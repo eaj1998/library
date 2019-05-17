@@ -11,8 +11,11 @@ router.get('/', (req, res) =>{
 
 //Rotas Autor
 router.get('/autor', autorController.index);
+router.get('/autor/edit/:idautor', autorController.edit);
+router.post('/autor/update/:idautor', autorController.update);
+router.get('/autor/delete/:idautor', autorController.delete);
 router.get('/autor/create', autorController.create);
-router.get('/autor/update/:id', autorController.update);
+router.post('/autor/save', autorController.save);
 
 
 module.exports = router;

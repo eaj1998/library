@@ -3,32 +3,23 @@
 <div id="content"> 
     <h2>Autores</h2> 
     <div class="row mt-5">
-        <div class="col-md-12">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <th>Nome</th>
-                    <th>Data de Nascimento</th>   
-                    <th></th>                 
-                </thead>
-                <tbody>
-                    <%
-                    if(data){
-                        for(var i = 0; i < data.length; i++){
-                            %>
-                            <tr>
-                                <td><%= data[i].nome %></td>
-                                <td><%= data[i].data_nascimento %></td>
-                                <td>
-                                    <a href="autores/update/<%= data[i].idautor %>" class="btn btn-warning">Editar</a>
-                                    <a href="" class="btn btn-danger">Deletar</a>
-                                </td>
-                            </tr>
-                            <%
-                        }
-                    }
-                    %>                                                   
-                </tbody>
-            </table>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/autor/update/<%= data.idautor %>" method="post">
+                        <div class="form-group">        
+                                <input type="text" name="nome" placeholder="Nome" class="form-control" value="<%= data.nome %>">
+                            </div>
+                            <div class="form-group">        
+                                <input type="date" name="data_nascimento" placeholder="Data de Nascimento" class="form-control" value="<%= data.data_nascimento %>">
+                            </div>
+                            <div class="form-group">        
+                                    <textarea id="story" name="descricao" rows="5" cols="93" placeholder="Descrição"><%= data.descricao %></textarea>
+                            </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -12,7 +12,9 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-flash-notification": "^0.5.0",
     "express-myconnection": "^1.0.4",
+    "express-session": "^1.16.1",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1"
   },
