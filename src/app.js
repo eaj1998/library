@@ -4,9 +4,22 @@ const path = require("path");
 const morgan = require("morgan");
 const mysql = require("mysql");
 const myConnection = require("express-myconnection");
+const flash = require('express-flash-notification');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const dateFormat = require('dateformat');
 
 const app = express();
 
+app.use(cookieParser())
+app.use(session({
+    secret: 'minha rola',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
+app.use(flash(app))
+app.use(dateFormat);
 //importando routes
 const routes = require('./routes/routes');
 
@@ -33,7 +46,6 @@ app.use('/', routes);
 
 //static files
 app.use(express.static(path.join(__dirname, '/css')));
-
 
 app.listen(app.get('port'), () => {
     console.log("Server on port 3000");    

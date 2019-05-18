@@ -1,0 +1,31 @@
+<% include ../layouts/topo %>
+
+<div id="content"> 
+    <h2>Clientes</h2> 
+    <div class="row mt-5">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/cliente/update/<%= data.idcliente %>" method="post">
+                        <div class="form-group">        
+                            <input type="text" class="form-control" value="<%= data.codigo %>" disabled>
+                        </div>
+                        <div class="form-group">        
+                                <input type="text" name="nome" placeholder="Nome" class="form-control" value="<%= data.nome %>">
+                            </div>
+                            <div class="form-group">        
+                                <input type="text" name="email" placeholder="E-mail" class="form-control" value="<%= data.email %>">
+                            </div>
+                            <div class="form-group">        
+                                <input type="text" name="telefone" placeholder="Telefone" class="form-control" value="<%= data.telefone %>">
+                            </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../layouts/rodape %>
+

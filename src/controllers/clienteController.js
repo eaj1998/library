@@ -3,76 +3,83 @@ const controller = {};
 
 controller.index = (req, res) =>{
     req.getConnection((err, conn) =>{
-        conn.query('SELECT * FROM autor', (err, autores) => {
+        conn.query('SELECT * FROM cliente', (err, clientes) => {
             if(err){
                 console.log(err);                
             }  
-            res.render('../views/autor/index', {
-                data: autores,
+            res.render('cliente/index', {
+                data: clientes,
             });
         });
     });
 }
 
 controller.create = (req, res) =>{    
-    res.render('autor/create', {});        
+    res.render('cliente/create', {});        
 }
 
 controller.save = (req, res) =>{
+    req.body.codigo = Math.floor(Math.random() * 65536);
     var data = req.body;
-
     req.getConnection((err, conn) =>{
-        conn.query('INSERT INTO autor SET ?',[data], (err, autores) => {
+        conn.query('INSERT INTO cliente SET ?',[data], (err, autores) => {
             if(err){
                 console.log(err);                
             }
-            res.redirect('/autor');
+            req.flash({
+                type: 'info',
+                message: 'Cliente cadastrado com sucesso.',
+                redirect: '/cliente'
+            }); 
         });
     });
 }
 
 controller.edit = (req, res) =>{
     req.getConnection((err, conn) =>{
-        var id = req.params.idautor;                
-        conn.query('SELECT * FROM autor WHERE idautor = ?',[id], (err, autor) => {
+        var id = req.params.idcliente;                
+        conn.query('SELECT * FROM cliente WHERE idcliente = ?',[id], (err, cliente) => {
             if(err){
                 console.log(err);                
-            }              
-            console.log(autor);
+            }                          
                                     
-            res.render('../views/autor/update', {
-                data: autor[0],
+            res.render('cliente/update', {
+                data: cliente[0],
             });                        
         });
     });
 }
 
 controller.update = (req, res) =>{    
-    var id = req.params.idautor;
+    var id = req.params.idcliente;
     var data = req.body;
 
     req.getConnection((err, conn) =>{
-        conn.query('UPDATE autor SET ? WHERE idautor = ?',[data, id], (err, autores) => {
+        conn.query('UPDATE cliente SET ? WHERE idcliente = ?',[data, id], (err, autores) => {
             if(err){
                 console.log(err);                
             }            
-            res.redirect('/autor');
+            req.flash({
+                type: 'info',
+                message: 'Cliente removido com sucesso.',
+                redirect: '/cliente'
+            });   
         });
     });
 }
 
 controller.delete = (req, res) =>{    
-    var id = req.params.idautor;
+    var id = req.params.idcliente;
 
     req.getConnection((err, conn) =>{
-        conn.query('DELETE FROM autor WHERE idautor = ?',[id], (err, autores) => {
+        conn.query('DELETE FROM cliente WHERE idcliente = ?',[id], (err, clientes) => {
             if(err){
                 console.log(err);                
             } 
             req.flash({
                 type: 'info',
                 message: 'Auto removido com sucesso.',
-                redirect: '/autor'
+                redirect: '/cliente'
             });                    
         });
     });
