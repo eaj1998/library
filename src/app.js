@@ -7,7 +7,7 @@ const myConnection = require("express-myconnection");
 const flash = require('express-flash-notification');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const dateFormat = require('dateformat');
+const moment = require('moment');
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(session({
     cookie: { secure: true }
 }))
 app.use(flash(app))
-app.use(dateFormat);
+
 //importando routes
 const routes = require('./routes/routes');
 

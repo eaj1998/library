@@ -3,6 +3,7 @@ const router = express.Router();
 
 const autorController = require('../controllers/autorController');
 const clienteController = require('../controllers/clienteController');
+const livroController = require('../controllers/livroController');
 const siteController = require('../controllers/siteController');
 
 //Rotas Site
@@ -25,6 +26,14 @@ router.post('/cliente/update/:idcliente', clienteController.update);
 router.get('/cliente/delete/:idcliente', clienteController.delete);
 router.get('/cliente/create', clienteController.create);
 router.post('/cliente/save', clienteController.save);
+
+//Rotas Livro
+router.get('/livro', livroController.index);
+router.get('/livro/edit/:idlivro', livroController.edit);
+router.post('/livro/update/:idlivro', livroController.update);
+router.get('/livro/delete/:idlivro', livroController.delete);
+router.get('/livro/create', livroController.create);
+router.post('/livro/save', livroController.save);
 
 
 module.exports = router;

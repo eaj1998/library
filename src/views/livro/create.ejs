@@ -1,0 +1,41 @@
+<% include ../layouts/topo %>
+<div id="content"> 
+    <h2>Cadastrar Livros</h2>         
+    <div class="row m-t-20">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/livro/save" method="post">
+                        <div class="form-group">        
+                                <input type="text" name="titulo" placeholder="Titulo" class="form-control">
+                            </div>
+                            <div class="form-group">        
+                                <input type="date" name="ano_publicacao" placeholder="Ano de Publicação" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <select name="idautor" id=""  class="form-control">
+                                    <option value="">Selecione...</option>                                    
+                                    <%
+                                    if(data){
+                                        for(var i = 0; i < data.length; i++){
+                                            %>
+                                            <option value="<%=data[i].idautor%>"><%=data[i].nome%></option>
+                                            <%
+                                        }
+                                    }
+                                    %>
+                                </select>                                                       
+                            </div>
+                            <div class="form-group">        
+                                <input type="text" name="valor_multa" placeholder="Valor da Multa" class="form-control">
+                            </div>                            
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../layouts/rodape %>
+

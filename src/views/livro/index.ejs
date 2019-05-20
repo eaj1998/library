@@ -1,0 +1,44 @@
+<% include ../layouts/topo %>
+
+<div id="content"> 
+    <h2>Livros</h2>         
+    <div>
+        <a href="livro/create" class="pull-right btn btn-success m-b-20">Cadastrar Livro</a>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <th>Titulo</th>
+                    <th>Ano de Publicação</th>
+                    <th>Autor</th>   
+                    <th>Valor da Multa</th>   
+                    <th></th>                 
+                </thead>
+                <tbody>
+                    <%
+                    if(data){
+                        for(var i = 0; i < data.length; i++){
+                            %>
+                            <tr>
+                                <td><%= data[i].titulo %></td>
+                                <td><%= data[i].ano_publicacao %></td>
+                                <td><%= data[i].nome %></td>
+                                <td><%= data[i].valor_multa %></td>
+                                <td>
+                                    <a href="livro/edit/<%= data[i].idlivro %>" class="btn btn-warning">Editar</a>
+                                    <a href="livro/delete/<%= data[i].idlivro %>" class="btn btn-danger">Deletar</a>
+                                </td>
+                            </tr>
+                            <%
+                        }
+                    }
+                    %>                                                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<% include ../layouts/rodape %>
+
