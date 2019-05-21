@@ -1,0 +1,44 @@
+<% include ../layouts/topo %>
+
+<div id="content"> 
+    <h2>Livros</h2> 
+    <div class="row mt-5">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/livro/update/<%= data.idlivro %>" method="post">
+                        <div class="form-group">        
+                            <input type="text" name="titulo" class="form-control" value="<%= data.titulo %>">
+                        </div>
+                        <div class="form-group">        
+                                <input type="date" name="ano_publicacao" class="form-control" value="<%= data.ano_publicacao %>">
+                            </div>
+                            <div class="form-group">
+                                    <select name="idautor" id=""  class="form-control">
+                                        <option value="">Selecione...</option>                                    
+                                        <%                                        
+                                        if(data_autores){
+                                            var selected = '';
+                                            for(var i = 0; i < data_autores.length; i++){                                                
+                                                var selected = ( data_autores[i].idautor == data.idautor ) ? "selected" : "";
+                                                %>
+                                                <option value="<%=data_autores[i].idautor;%>" <%=selected %>><%=data_autores[i].nome%></option>
+                                                <%
+                                            }
+                                        }
+                                        %>
+                                    </select>                                                       
+                                </div>
+                            <div class="form-group">        
+                                <input type="text" name="valor_multa" placeholder="Valor da Multa" class="form-control" value="<%= data.valor_multa %>">
+                            </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../layouts/rodape %>
+

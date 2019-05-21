@@ -7,8 +7,6 @@ const myConnection = require("express-myconnection");
 const flash = require('express-flash-notification');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const moment = require('moment');
-
 const app = express();
 
 app.use(cookieParser())
@@ -46,6 +44,9 @@ app.use('/', routes);
 
 //static files
 app.use(express.static(path.join(__dirname, '/css')));
+
+//SCHEDULE JS
+require('./schedule/index');
 
 app.listen(app.get('port'), () => {
     console.log("Server on port 3000");    

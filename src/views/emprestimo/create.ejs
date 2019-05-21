@@ -1,0 +1,45 @@
+<% include ../layouts/topo %>
+<div id="content"> 
+    <h2>Cadastrar Emprestimos</h2>         
+    <div class="row m-t-20">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/emprestimo/save" method="post">
+                        <div class="form-group">        
+                            <input type="text" name="codigo" placeholder="Código" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Livro</label>
+                                <select name="idlivro" id=""  class="form-control">
+                                    <option value="">Selecione...</option>                                    
+                                    <%
+                                    if(livros){
+                                        for(var i = 0; i < livros.length; i++){
+                                            %>
+                                            <option value="<%=livros[i].idlivro%>"><%=livros[i].titulo%></option>
+                                            <%
+                                        }
+                                    }
+                                    %>
+                                </select>                                                       
+                            </div>                           
+                        <div class="form-group">    
+                            <label>Data Emprestimo</label>    
+                                <input type="date" name="data_emprestimo" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Data Devolução</label>        
+                                <input type="date" name="data_devolucao" placeholder="Ano de Publicação" class="form-control">
+                            </div>                           
+                            <input type="hidden" name="idcliente">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../layouts/rodape %>
+

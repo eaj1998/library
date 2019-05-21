@@ -1,0 +1,55 @@
+<% include ../layouts/topo %>
+
+<div id="content"> 
+    <h2>Emprestimos</h2>         
+    <div>
+        <a href="emprestimo/create" class="pull-right btn btn-success m-b-20">Cadastrar Emprestimo</a>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <th>Código</th>
+                    <th>Cliente</th>
+                    <th>Livro</th>   
+                    <th>Data Empréstimo</th>   
+                    <th>Data Devolução</th>   
+                    <th></th>                 
+                </thead>
+                <tbody>
+                    <%
+                    if(data){
+                        for(var i = 0; i < data.length; i++){
+                            %>
+                            <tr>
+                                <td><%= data[i].codigo %></td>
+                                <td><%= data[i].nome %></td>
+                                <td><%= data[i].titulo %></td>
+                                <td><%= data[i].data_emprestimo %></td>
+                                <td><%= data[i].data_devolucao %></td>
+                                <td>
+                                    <%
+                                    if(data[i].entregue){
+                                    %>
+                                    <i>Livro entregue!</i>
+                                    <%
+                                    }else{
+                                        %>
+                                        <a href="/emprestimo/devolucao/<%= data[i].idemprestimo %>" class="btn btn-warning">Editar</a>
+                                        <%
+                                    }
+                                    %>
+                                </td>
+                            </tr>
+                            <%
+                        }
+                    }
+                    %>                                                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<% include ../layouts/rodape %>
+
